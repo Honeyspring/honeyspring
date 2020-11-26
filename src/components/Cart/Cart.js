@@ -34,6 +34,7 @@ const Cart = ({match,fetchProduct,product})=> {
      // localStorage.setItem(key,JSON.stringify(cartList));
   return (
       <>
+        <Card  bordered={false} style={{marginBottom:'12px'}} >
       <Row gutter={[16, 24]}>
        <Col className="gutter-row" sm lg xl md={8} >
              <div className="site-card-border-less-wrapper">
@@ -65,7 +66,8 @@ const Cart = ({match,fetchProduct,product})=> {
        </Col>
   
       </Row>
-      <Card title={item.title} bordered={false} >
+      </Card>
+      <Card style={{marginTop:'12px',  backgroundColor:' #2b959c !important'}}bordered={false} >
         <Row gutter={[16, 24]}>
        <Col className="gutter-row" sm lg xl md={8} >
          
