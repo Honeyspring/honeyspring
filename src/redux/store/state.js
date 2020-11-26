@@ -5,13 +5,15 @@
  */
 
 export const initialState = {
-  projects: [
-    { id:'1',title:'get ready99',content:'yes we can'},
-    { id:'2',title:'get read',content:'yes we can'},
-    { id:'3',title:'get ready99',content:'yes we can'},
-    { id:'4',title:'get 99',content:'yes we can'},
+  products: [
+    
   ],
- 
+ product:{},
+  cart: [
+  
+],
+  total: 0,
+  amount: 0,
   isAuthorized:false,
   token:'',
   success:"",

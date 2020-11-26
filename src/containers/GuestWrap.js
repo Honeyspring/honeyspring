@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderLayout from '../components/Header/Header';
-import Sidebar from '../components/Sidebar/Sidebar';
+
 import FooterLayout from '../components/Footer/Footer';
 import { Layout, Breadcrumb  } from 'antd';
 const { Content } = Layout;
 
 const GuestWrap = (routerProps) => {
-    console.log(routerProps)
+  console.log(routerProps)
+ 
     return (
        
            <Layout style={{ minHeight: '100vh' }}>

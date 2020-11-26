@@ -1,14 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
-import { Layout, Menu} from 'antd';
+import {  Menu,Badge } from 'antd';
+import { FaShoppingCart } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
-const SignedOutLinks=()=> {
+const key = 'fjy78999999'
+  
+const SignedOutLinks = () => {
+  const { count, setCount } = useState(JSON.parse(localStorage.getItem(key))|| 0);
+   
     return (
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1"><Link to ='/signUp'>SignUp</Link></Menu.Item>
-            <Menu.Item key="2"><Link to ='/signIn'>SignIn</Link></Menu.Item>
+      <>
+        
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} >
+             <Menu.Item className="text-left logo" >HoneySpring</Menu.Item>
+            <Menu.Item key="1" className='text-right'>
+                 
+                <Link to='/cart'>cart
+                      <Badge count ={count}>
+                  <IconContext.Provider value={{ className: "icons" }}>
+                  <FaShoppingCart  />
+                    </IconContext.Provider>
+                  </Badge>
+            </Link>
+            </Menu.Item>
            
-          </Menu>
+        </Menu>
+        </>
     )
 }
 

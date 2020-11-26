@@ -1,10 +1,11 @@
 import React from 'react'
 import { Layout } from 'antd';
 const { Footer } = Layout;
-const FooterLayout =()=> {
+const FooterLayout = () => {
+    const today = new Date().getFullYear();
     return (
       
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> 
+            <Footer style={{ textAlign: 'center' }}>HoneySpring  &copy; {today}</Footer> 
        
     )
 }
