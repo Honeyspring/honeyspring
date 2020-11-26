@@ -73,16 +73,15 @@ const Cart = ({match,fetchProduct,product})=> {
        <Col className="gutter-row" sm lg xl md={8} >
          
              <div className="site-card-border-less-wrapper">
-       <p>Total Quantity</p>
+       <h5>Total Quantity</h5>
       <h6>Total Cost:</h6>
          </div>
       </Col>
         <Col className="gutter-row" sm lg xl md={16} >
           <p>{count}</p>
          <b>{carts.price  * count}</b>
-            <p>{carts.category}</p>
-            <button onClick={DecreaseCount} className='left'>-</button>
-<button onClick={IncreaseCount} className='right'>+</button> 
+          
+       
        </Col>
   
       </Row>
