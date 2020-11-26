@@ -38,7 +38,7 @@ const Cart = ({match,fetchProduct,product})=> {
       <Row gutter={[16, 24]}>
        <Col className="gutter-row" sm lg xl md={8} >
              <div className="site-card-border-less-wrapper">
-       <Card title={carts.title} bordered={false} >
+       <Card bordered={false} >
        <Link to={`/products/${carts.id}`}>
            <img
         alt="example"
@@ -54,7 +54,8 @@ const Cart = ({match,fetchProduct,product})=> {
            </div>
       </Col>
         <Col className="gutter-row" sm lg xl md={16} >
-          <b>
+            <b>
+              {carts.title}
             </b>
          <p>Price:₦{carts.price}</p>
           <p>Cateory:{carts.category}</p>
