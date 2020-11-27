@@ -54,6 +54,8 @@ const CartList = ({
     </div>
   );
 };
+
+
 const mapStateToprops = (state) => {
   return {
    

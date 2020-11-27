@@ -26,7 +26,7 @@ const cartReducer = (state = initialState, action) => {
       case INCREASE:
 
           let tempCart = state.cart.map(cartItem => {
-              if (cartItem.id === action.payload.id) {
+              if (cartItem.id === action.payload) {
                   cartItem = { ...cart, amount: cartItem.amount + 1 };
               }
               return cartItem;
@@ -93,6 +93,7 @@ const cartReducer = (state = initialState, action) => {
               })
           };
       case CLEAR_CART:
+           JSON.parse(localStorage.removeItem(key))
   return { ...state, cart: [] }
     default:
       return state;

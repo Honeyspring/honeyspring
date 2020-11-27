@@ -1,4 +1,11 @@
-
+.ant-badge .icons{
+  font-size: 28px;
+  color:#ffff
+}
+.ant-badge-count{
+ background: #52c41a;
+}
+   
 .ant-layout-header,::selection{
   background: #2b959c !important;
       color: #fff;

@@ -2,30 +2,43 @@ import React, { useEffect ,useState} from 'react';
 import {Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { Col ,Card, Row} from  'antd';
-import PropTypes from 'prop-types';
-import { IconContext } from "react-icons";
-import { FaShoppingCart } from "react-icons/fa";
-import {displayProductById } from "../../redux/actions/displayProductAction";
+/* import PropTypes from 'prop-types'; */
+import {
+ increase,
+  decrease,
+  remove,
+  toggleAmount,
+ clearCart
+} from "../../redux/actions/cartAction";
 
   const key='fjy78999999'
-const Cart = ({ match, fetchProduct, product }) => {
-  const productID = match.params.id;
-  useEffect(() => {
-    fetchProduct(productID);
-  }, [fetchProduct, productID]);
+const Cart = ({ match,
+  cart,
+  clear,
+  remove,
+  increase,
+  decrease,
+  toggle
+}) => {
+ 
   const [count, setCount] = useState(0);
   const [carts, setCart] = useState(JSON.parse(localStorage.getItem(key)) || []);
-  const item = product.product;
-  const itemId = product.id
+  cart =JSON.parse(localStorage.getItem(key)) 
+
   const IncreaseCount = () => {
-    setCount(count + 1);
-     
-      
+   setCount(count + 1);
+     //increase(productID )
+    
   }
-  const DecreaseCount = (item) => {
+  const DecreaseCount = () => {
     setCount(count - 1);
   
   
+  }
+  const Clear = () => {
+    clear();
+  console.log(cart)
+ 
   }
   const cartList = carts;
   const num = count;
@@ -37,9 +50,9 @@ const Cart = ({ match, fetchProduct, product }) => {
     <>
      
          
-        {carts.map((cart) => (
+        {carts.map((cart,id) => (
      
-          <Card bordered={false} style={{ marginBottom: '12px' }} key={cart.id}>
+          <Card bordered={false} style={{ marginBottom: '12px' }} key={id}>
             { console.log(cart.product)}
             <Row gutter={[16, 24]}>
               <Col className="gutter-row" sm lg xl md={8} >
@@ -65,9 +78,10 @@ const Cart = ({ match, fetchProduct, product }) => {
                 </b>
                 <p>Price:₦{cart.product.price}</p>
                 <p>Cateory:{cart.product.category}</p>
+                 <p>quantity:{cart.quantity + count}</p>
                 <p style={{ width: '12px' }}>
                   <button onClick={DecreaseCount} className='btn left'>-</button>
-                  {cart.quantity}
+                  {cart.quantity + 1}
                   <button onClick={IncreaseCount} className='right btn'>+</button>
                 </p>
               </Col>
@@ -85,10 +99,10 @@ const Cart = ({ match, fetchProduct, product }) => {
          </div>
       </Col>
         <Col className="gutter-row" sm lg xl md={16} >
-          <p>{count}</p>
+          <p>{carts.length + count}</p>
          {/* <b>{carts.price  * count}</b> */}
           
-       
+       <button onClick={Clear}>clearCart</button>
        </Col>
   
       </Row>
@@ -100,36 +114,26 @@ const Cart = ({ match, fetchProduct, product }) => {
  
     )
 }
-Cart.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-     id:PropTypes.string
-      
-     }).isRequired
-   }).isRequired,
-   fetchProduct:PropTypes.func.isRequired ,
-   product: PropTypes.shape({
-  
-    price: PropTypes.number,
-    title: PropTypes.string,
-    quantity: PropTypes.number,
-    description: PropTypes.string,
-        image: PropTypes.string
-  }).isRequired 
-}
 
- const mapStateToprops = (state )=> {
+
+const mapStateToprops = (state) => {
+  return {
+   
+    cart: state.cart,/*grabbing the state of the cart on the cart reducer in the root reducer*/
+   
+    };
  
-  return {
-    productID: state.displayProductById,
-      product: state.displayProducts,
-  };
 };
-const mapDispatchToprops = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { id, amount } = ownProps;
 
   return {
-    fetchProduct: (productID) =>  dispatch(displayProductById(productID))
-  ,
+      remove: () => dispatch(remove(id)),
+ clear: () => dispatch(clearCart({ id,amount }) ),
+    increase: () => dispatch(increase({ id }) ),
+    decrease: () => dispatch(decrease({ id, amount } )),
+    toggle: (toggle) => dispatch(toggleAmount({ id, toggle }))
   };
 };
-export default connect(mapStateToprops, mapDispatchToprops)(Cart)   
+
+export default connect(mapStateToprops, mapDispatchToProps)(Cart)   
