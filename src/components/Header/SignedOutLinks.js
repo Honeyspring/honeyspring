@@ -13,7 +13,7 @@ const SignedOutLinks = () => {
       <>
         
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} >
-             <Menu.Item className="text-left logo" >HoneySpring</Menu.Item>
+             <Menu.Item className="text-left logo" > <Link to='/'>HoneySpring  </Link></Menu.Item>
             <Menu.Item key="1" className='text-right'>
                  
                 <Link to='/cart'>cart

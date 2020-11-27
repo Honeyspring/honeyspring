@@ -9,7 +9,7 @@ import { IconContext } from "react-icons";
 import { addToCart } from '../../redux/actions/cartAction';
 
 const { Meta } = Card;
-const key = 'fjy78999999'
+
 
 const ProductCard = ({ product,add }) => {
   const [cart,setCart]=useState([])
@@ -25,7 +25,7 @@ const ProductCard = ({ product,add }) => {
   
 
 
-    localStorage.setItem(key,JSON.stringify(product));
+
     return (
       <div className="site-card-border-less-wrapper">
     

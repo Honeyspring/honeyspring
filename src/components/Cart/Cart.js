@@ -8,66 +8,71 @@ import { FaShoppingCart } from "react-icons/fa";
 import {displayProductById } from "../../redux/actions/displayProductAction";
 
   const key='fjy78999999'
-const Cart = ({match,fetchProduct,product})=> {
-  const  productID=match.params.id; 
-   useEffect(() => {
+const Cart = ({ match, fetchProduct, product }) => {
+  const productID = match.params.id;
+  useEffect(() => {
     fetchProduct(productID);
-  }, [fetchProduct,productID]); 
- const [count, setCount] = useState(0);
+  }, [fetchProduct, productID]);
+  const [count, setCount] = useState(0);
   const [carts, setCart] = useState(JSON.parse(localStorage.getItem(key)) || []);
   const item = product.product;
-     const itemId=product.id
-    const IncreaseCount = () => {
+  const itemId = product.id
+  const IncreaseCount = () => {
     setCount(count + 1);
      
       
-  } 
-   const DecreaseCount = (item) => {
+  }
+  const DecreaseCount = (item) => {
     setCount(count - 1);
   
   
-  } 
+  }
   const cartList = carts;
   const num = count;
 
   console.log(cartList, num);
-     // localStorage.setItem(key,JSON.stringify(cartList));
-  return (
-      <>
-        <Card  bordered={false} style={{marginBottom:'12px'}} >
-      <Row gutter={[16, 24]}>
-       <Col className="gutter-row" sm lg xl md={8} >
-             <div className="site-card-border-less-wrapper">
-       <Card bordered={false} >
-       <Link to={`/products/${carts.id}`}>
-           <img
-        alt="example"
-            src={carts.image}
-            className='cart-img'
-      
-      />
-      </Link>
-        
-        
-        
-        </Card>
-           </div>
-      </Col>
-        <Col className="gutter-row" sm lg xl md={16} >
-            <b>
-              {carts.title}
-            </b>
-         <p>Price:₦{carts.price}</p>
-          <p>Cateory:{carts.category}</p>
-          <p style={{width:'12px'}}>
-            <button onClick={DecreaseCount} className='btn left'>-</button>
-            {count}
-            <button onClick={IncreaseCount} className='right btn'>+</button> 
-            </p>
-       </Col>
   
-      </Row>
-      </Card>
+  return (
+     carts && carts.length ? (
+    <>
+     
+         
+        {carts.map((cart) => (
+          <Card bordered={false} style={{ marginBottom: '12px' }} key={cart.id}>
+            <Row gutter={[16, 24]}>
+              <Col className="gutter-row" sm lg xl md={8} >
+                <div className="site-card-border-less-wrapper">
+                  <Card bordered={false} >
+                    <Link to={`/products/${cart.id}`}>
+                      <img
+                        alt="example"
+                        src={cart.image}
+                        className='cart-img'
+      
+                      />
+                    </Link>
+        
+        
+        
+                  </Card>
+                </div>
+              </Col>
+              <Col className="gutter-row" sm lg xl md={16} >
+                <b>
+                  {carts.title}
+                </b>
+                <p>Price:₦{cart.price}</p>
+                <p>Cateory:{cart.category}</p>
+                <p style={{ width: '12px' }}>
+                  <button onClick={DecreaseCount} className='btn left'>-</button>
+                  {count}
+                  <button onClick={IncreaseCount} className='right btn'>+</button>
+                </p>
+              </Col>
+  
+            </Row>
+          </Card>
+        ))}
       <Card style={{marginTop:'12px',  backgroundColor:' #2b959c !important'}}bordered={false} >
         <Row gutter={[16, 24]}>
        <Col className="gutter-row" sm lg xl md={8} >
@@ -79,7 +84,7 @@ const Cart = ({match,fetchProduct,product})=> {
       </Col>
         <Col className="gutter-row" sm lg xl md={16} >
           <p>{count}</p>
-         <b>{carts.price  * count}</b>
+         {/* <b>{carts.price  * count}</b> */}
           
        
        </Col>
@@ -87,6 +92,10 @@ const Cart = ({match,fetchProduct,product})=> {
       </Row>
         </Card>
       </>
+   ): (<p > No Item In Cart</p >)
+
+
+ 
     )
 }
 Cart.propTypes = {

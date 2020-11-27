@@ -9,6 +9,7 @@ import {
 } from "../constants/constants";
 import { initialState } from "../store/state";
 
+const key = 'fjy78999999';
 
 const cartReducer = (state = initialState, action) => {
     let cart = state.cart;
@@ -16,10 +17,11 @@ const cartReducer = (state = initialState, action) => {
  
 
       case ADD_TO_CART:
-        const cart = [...state.cart,action.payload];
+          const cartList = [...cart, action.payload];
+           localStorage.setItem(key,JSON.stringify(cartList))
           return {
               ...state,
-              cart
+              cart:cartList
           };
       case INCREASE:
 

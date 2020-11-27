@@ -1,12 +1,21 @@
 
-.ant-layout-header{
+.ant-layout-header,::selection{
   background: #2b959c !important;
+      color: #fff;
 }
 .ant-menu.ant-menu-dark{
    background: none !important; 
 }
 a{
  color:#fff!important; 
+}
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover{
+ 
+  background:#fff !important;
+}
+a:hover,
+.ant-menu-dark .ant-menu-item:hover > a{
+ color:#2b959c !important;
 }
 /* 
 
