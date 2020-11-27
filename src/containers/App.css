@@ -33,7 +33,7 @@ body{
       line-height: 26.4px; 
       
 }
-b,.product-card .icons{
+b,.product-card .icons,.ant-layout-footer{
   color:#2b959c !important;
 }
 .ant-card-head,.grey-text{
@@ -72,8 +72,8 @@ a{
   background:none !important;
 }
 .desc-btn,.desc-btn:focus{
-  width: 200px;
-
+ 
+width: 200px;
 border:2px solid #2b959c;
   background: transparent;
   color:#2b959c;
@@ -83,6 +83,15 @@ border:2px solid #2b959c;
 
 }
 
+ 
+.right-btn ,.left-btn,.right-btn ,.left-btn, .right-btn :focus,.left-btn :focus{
+  width:50px;
+  border:2px solid #2b959c;
+  background: transparent;
+  color:#2b959c;
+  font-size: 16px;
+  font-weight: bold;
+}
 /*
 a:hover,
 .ant-menu-dark .ant-menu-item:hover > a,.icons:hover{

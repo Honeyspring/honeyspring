@@ -79,13 +79,13 @@ const Cart = ({ match,
                 <b>
                   {cartItem.product.title}
                 </b>
-                <p><b>Price:</b>₦{cartItem.product.price}</p>
-                <p><b>Category:</b>{cartItem.product.category}</p>
-                 <p><b>Quantity:</b>{cartItem.quantity + count}</p>
+                <p><b style={{paddingRight:'15px'}}>Price:</b>₦{cartItem.product.price}</p>
+                <p><b style={{paddingRight:'15px'}}> Category:</b>{cartItem.product.category}</p>
+                 <p><b style={{paddingRight:'15px'}}>Quantity:</b>{cartItem.quantity }</p>
                 <p style={{ display:'flex' }}>
-                  <button onClick={DecreaseCount} className='btn left'>-</button>
-                  {cartItem.quantity + 1}
-                  <button onClick={IncreaseCount} className='right btn'>+</button>
+                  <button onClick={DecreaseCount} className='left-btn'>-</button>
+                  <b style={{padding:'0 15px'}}> {cartItem.quantity + 1}</b>
+                  <button onClick={IncreaseCount} className='right-btn'>+</button>
                 </p>
               </Col>
   
@@ -98,14 +98,18 @@ const Cart = ({ match,
          
              <div className="site-card-border-less-wrapper">
        <h5>Total Quantity</h5>
-      <h6>Total Cost:</h6>
+       <h5 className='grey-text'>Total Cost:</h5>
          </div>
       </Col>
-        <Col className="gutter-row" sm lg xl md={16} >
+            <Col className="gutter-row" sm lg xl md={16} >
+          
+              
           <p>{cart.length + count}</p>
          <b>₦{total}</b> 
           
-       <button onClick={Clear}>clearCart</button>
+            <Col sm lg xl md={16} style={{marginTop:'22px'}}>
+       <button onClick={Clear}  className='desc-btn'>Empty Cart</button>
+        </Col>
        </Col>
   
       </Row>
