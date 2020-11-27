@@ -40,7 +40,7 @@ const ProductCard = ({ product,add }) => {
       
               />
               </Link>
-          <b className='left'>  {product.price} </b>
+          <b className='left'>₦  {product.price} </b>
        
          
           <button onClick={addToCart} className='right'>

@@ -38,15 +38,17 @@ const Cart = ({ match, fetchProduct, product }) => {
      
          
         {carts.map((cart) => (
+     
           <Card bordered={false} style={{ marginBottom: '12px' }} key={cart.id}>
+            { console.log(cart.product)}
             <Row gutter={[16, 24]}>
               <Col className="gutter-row" sm lg xl md={8} >
                 <div className="site-card-border-less-wrapper">
                   <Card bordered={false} >
-                    <Link to={`/products/${cart.id}`}>
+                    <Link to={`/products/${cart.product.id}`}>
                       <img
                         alt="example"
-                        src={cart.image}
+                        src={cart.product.image}
                         className='cart-img'
       
                       />
@@ -59,13 +61,13 @@ const Cart = ({ match, fetchProduct, product }) => {
               </Col>
               <Col className="gutter-row" sm lg xl md={16} >
                 <b>
-                  {carts.title}
+                  {cart.product.title}
                 </b>
-                <p>Price:₦{cart.price}</p>
-                <p>Cateory:{cart.category}</p>
+                <p>Price:₦{cart.product.price}</p>
+                <p>Cateory:{cart.product.category}</p>
                 <p style={{ width: '12px' }}>
                   <button onClick={DecreaseCount} className='btn left'>-</button>
-                  {count}
+                  {cart.quantity}
                   <button onClick={IncreaseCount} className='right btn'>+</button>
                 </p>
               </Col>
