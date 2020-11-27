@@ -16,7 +16,7 @@ const cartReducer = (state = initialState, action) => {
  
 
       case ADD_TO_CART:
-          cart.push(action.payload);
+        const cart = [...state.cart,action.payload];
           return {
               ...state,
               cart
