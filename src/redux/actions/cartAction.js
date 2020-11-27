@@ -18,10 +18,10 @@ export const addToCart= (product) => {
       }
   };
 };
-export const decrease = ({ id, amount }) => {
+export const decrease = ({ id, quantity }) => {
   return {
     type: DECREASE,
-    payload: { id, amount }
+    payload: { id, quantity }
   };
 };
 export const increase = (id) => {

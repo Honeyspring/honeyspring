@@ -14,6 +14,7 @@ import {
   const key='fjy78999999'
 const Cart = ({ match,
   cart,
+  total,
   clear,
   remove,
   increase,
@@ -22,8 +23,8 @@ const Cart = ({ match,
 }) => {
  
   const [count, setCount] = useState(0);
-  const [carts, setCart] = useState(JSON.parse(localStorage.getItem(key)) || []);
-  cart =JSON.parse(localStorage.getItem(key)) 
+  //const [carts, setCart] = useState(JSON.parse(localStorage.getItem(key)) || []);
+ cart =JSON.parse(localStorage.getItem(key)) 
 
   const IncreaseCount = () => {
    setCount(count + 1);
@@ -37,31 +38,33 @@ const Cart = ({ match,
   }
   const Clear = () => {
     clear();
-  console.log(cart)
- 
-  }
-  const cartList = carts;
-  const num = count;
-
-  console.log(cartList, num);
+    /* dconsole.log(cart)
+   
+    }
+    const cartList = carts;
+    const num = count;
   
-  return (
-     carts && carts.length ? (
+    console.log(cartList, num);
+     */
+  }
+  console.log(cart)
+  return  (
+     cart && cart.length ? (
     <>
      
          
-        {carts.map((cart,id) => (
+        {cart.map((cartItem,id) => (
      
           <Card bordered={false} style={{ marginBottom: '12px' }} key={id}>
-            { console.log(cart.product)}
+            { console.log(cartItem.product)}
             <Row gutter={[16, 24]}>
               <Col className="gutter-row" sm lg xl md={8} >
                 <div className="site-card-border-less-wrapper">
                   <Card bordered={false} >
-                    <Link to={`/products/${cart.product.id}`}>
+                    <Link to={`/products/${cartItem.product.id}`}>
                       <img
                         alt="example"
-                        src={cart.product.image}
+                        src={cartItem.product.image}
                         className='cart-img'
       
                       />
@@ -74,14 +77,14 @@ const Cart = ({ match,
               </Col>
               <Col className="gutter-row" sm lg xl md={16} >
                 <b>
-                  {cart.product.title}
+                  {cartItem.product.title}
                 </b>
-                <p>Price:₦{cart.product.price}</p>
-                <p>Cateory:{cart.product.category}</p>
-                 <p>quantity:{cart.quantity + count}</p>
-                <p style={{ width: '12px' }}>
+                <p><b>Price:</b>₦{cartItem.product.price}</p>
+                <p><b>Category:</b>{cartItem.product.category}</p>
+                 <p><b>Quantity:</b>{cartItem.quantity + count}</p>
+                <p style={{ display:'flex' }}>
                   <button onClick={DecreaseCount} className='btn left'>-</button>
-                  {cart.quantity + 1}
+                  {cartItem.quantity + 1}
                   <button onClick={IncreaseCount} className='right btn'>+</button>
                 </p>
               </Col>
@@ -99,8 +102,8 @@ const Cart = ({ match,
          </div>
       </Col>
         <Col className="gutter-row" sm lg xl md={16} >
-          <p>{carts.length + count}</p>
-         {/* <b>{carts.price  * count}</b> */}
+          <p>{cart.length + count}</p>
+         <b>₦{total}</b> 
           
        <button onClick={Clear}>clearCart</button>
        </Col>
@@ -117,10 +120,11 @@ const Cart = ({ match,
 
 
 const mapStateToprops = (state) => {
+ 
   return {
    
     cart: state.cart,/*grabbing the state of the cart on the cart reducer in the root reducer*/
-   
+   total:state.cart.total
     };
  
 };

@@ -13,6 +13,7 @@ const { Meta } = Card;
 
 const ProductCard = ({ product,add }) => {
   const [cart,setCart]=useState([])
+  //const [disabled,setDisabled]=useState(false)
     const addToCart = () => {
       add(product)
       setCart([
@@ -20,6 +21,7 @@ const ProductCard = ({ product,add }) => {
         product
       ])
       console.log(product)
+      //setDisabled(true)
   } 
   
   
@@ -30,7 +32,7 @@ const ProductCard = ({ product,add }) => {
       <div className="site-card-border-less-wrapper">
     
         <Card className='product-card' title={product.title} bordered={false} 
-       
+       style={{position:'relative'}}
           >
             <>
              <Link to={`/products/${product.id}`}> 
@@ -39,17 +41,19 @@ const ProductCard = ({ product,add }) => {
          src={product.image}
       
               />
-              </Link>
+            </Link>
+            <div className='product-card-footer'>
           <b className='left'>₦  {product.price} </b>
        
          
-          <button onClick={addToCart} className='right'>
+          <button onClick={addToCart} className='right' >
              {/*   <Badge count={num}> */}
                   <IconContext.Provider value={{ className: "icons" }}>
                   <FaShoppingCart  />
                 </IconContext.Provider>
                {/*  </Badge> */}
-                           </button> 
+              </button> 
+              </div>
                            </>
       
             

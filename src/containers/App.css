@@ -1,9 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Monsieur+La+Doulaise');
+@font-face {
+  font-family: "Monsieur+La+Doulaise";
+  font-style: normal;
+  font-weight: 400;
+ src: url("../assets/fonts/MrDafoe-Regular.ttf");
+}
+body{
+  color:#2b959c;
+ font-family: 'Courier New', Courier, monospace;
+ 
+}
+.header{
+ /*  height: 64px;
+    padding: 0 50px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 64px;
+    background: #001529;
+    display: flex; */
+    justify-content: space-between;
+}
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.logo{
+  font-family: "Monsieur La Doulaise";
+   font-size: 24px;
+ font-style: normal;
+     font-variant: normal; 
+     font-weight: 700;
+      line-height: 26.4px; 
+      
+}
+b,.product-card .icons{
+  color:#2b959c !important;
+}
+.ant-card-head,.grey-text{
+  color: #635766 !important;
+}
+.category{
+font-size: 14px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.product-card button .product-card button:focus{
+  border:none;
+  background: transparent;
+}
 .ant-badge .icons{
   font-size: 28px;
   color:#ffff
 }
 .ant-badge-count{
- background: #52c41a;
+
+ background: #52c41a!important;
 }
    
 .ant-layout-header,::selection{
@@ -16,14 +67,28 @@
 a{
  color:#fff!important; 
 }
-.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover{
- 
-  background:#fff !important;
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover,.ant-menu.ant-menu-dark .ant-menu-item-selected{
+  color:#2b959c !important;
+  background:none !important;
 }
+.desc-btn,.desc-btn:focus{
+  width: 200px;
+
+border:2px solid #2b959c;
+  background: transparent;
+  color:#2b959c;
+    padding: 10px;
+    position: absolute;
+        bottom: 0;
+
+}
+
+/*
 a:hover,
-.ant-menu-dark .ant-menu-item:hover > a{
- color:#2b959c !important;
-}
+.ant-menu-dark .ant-menu-item:hover > a,.icons:hover{
+  color:#2b959c !important; 
+
+}*/
 /* 
 
  .ant-menu-item:hover{
@@ -60,6 +125,12 @@ text-align: end;
 .left{
  float: left;
 }
+.product-card-footer{
+position: absolute;
+        bottom: 0;
+        width: 70%;
+}
+
 .product-card{
   width:200px;
  height: 300px;
@@ -71,7 +142,7 @@ text-align: end;
   .product-card img,.cart-img{
   max-width: 160px;
   max-height: 160px;
-  margin: 10px 20px;
+ /*  margin: 10px 20px; */
 }
 
 @media only screen 
@@ -81,17 +152,17 @@ text-align: end;
     .product-card img,.cart-img{
   max-width: 160px;
   max-height: 160px;
-  margin: 10px 20px;
+/*   margin: 10px 20px; */
 }
   }
-  /*Laptop*/
+  /*Laptop
 @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) {
        .product-card img{
-  /* max-width: 200px;
-  max-height: 200px; */
-  margin: 10px 20px;
-}
-  }
+   max-width: 200px;
+  max-height: 200px; 
+  margin: 10px 20px; 
+} 
+  }*/

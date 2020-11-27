@@ -18,16 +18,17 @@ const cartReducer = (state = initialState, action) => {
 
       case ADD_TO_CART:
           const cartList = [...cart, action.payload];
-           localStorage.setItem(key,JSON.stringify(cartList))
+          localStorage.setItem(key, JSON.stringify(cartList))
+          const cartMemo = JSON.parse(localStorage.getItem(key));
           return {
               ...state,
-              cart:cartList
+              cart:cartMemo
           };
       case INCREASE:
 
           let tempCart = state.cart.map(cartItem => {
               if (cartItem.id === action.payload) {
-                  cartItem = { ...cart, amount: cartItem.amount + 1 };
+                  cartItem = { ...cart, quantity: cartItem.quantity+ 1 };
               }
               return cartItem;
           });
@@ -39,7 +40,7 @@ const cartReducer = (state = initialState, action) => {
       case DECREASE:
            let decCart = state.cart.map(cartItem => {
       if (cartItem.id === action.payload) {
-        cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+        cartItem = { ...cartItem, quantity: cartItem.quantity - 1 };
                }
                 return cartItem;
            });
@@ -54,19 +55,19 @@ const cartReducer = (state = initialState, action) => {
       };
       
       case GET_TOTALS:
-          let { total, amount } = state.cart.reduce(
+          let { total, quantity} = state.cart.reduce(
       (cartTotal, cartItem) => {
-        const { price, amount } = cartItem;
-        const itemTotal = price * amount;
+        const { price, quantity} = cartItem;
+        const itemTotal = price * quantity;
 
         cartTotal.total += itemTotal;
-        cartTotal.amount += amount;
+        cartTotal.quantity+= quantity;
 
         return cartTotal;
       },
       {
         total: 0,
-        amount: 0
+        quantity: 0
       }
     );
     total = parseFloat(total.toFixed(2));
@@ -74,7 +75,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
           total,
-          amount,
+          quantity,
       }; 
       
       case TOGGLE_AMOUNT:
@@ -83,17 +84,17 @@ const cartReducer = (state = initialState, action) => {
               cart: state.cart.map(cartItem => {
                   if (cartItem.id === action.payload.id) {
                       if (action.payload.toggle === "inc") {
-                          return (cartItem = { ...cartItem, amount: cartItem.amount + 1 });
+                          return (cartItem = { ...cartItem, quantity: cartItem.quantity+ 1 });
                       }
                       if (action.payload.toggle === "dec") {
-                          return (cartItem = { ...cartItem, amount: cartItem.amount - 1 });
+                          return (cartItem = { ...cartItem, quantity: cartItem.quantity- 1 });
                       }
                   }
                    return cartItem;
               })
           };
       case CLEAR_CART:
-           JSON.parse(localStorage.removeItem(key))
+        localStorage.removeItem(key)
   return { ...state, cart: [] }
     default:
       return state;

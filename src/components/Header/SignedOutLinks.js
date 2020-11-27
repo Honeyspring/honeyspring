@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {  Menu,Badge } from 'antd';
 import { FaShoppingCart } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -8,15 +8,25 @@ import { IconContext } from "react-icons";
 
 const key = 'fjy78999999'
   
-const SignedOutLinks = ({carts}) => {
-  //const { count, setCount } = useState(JSON.parse(localStorage.getItem(key))|| 0);
-  let count = JSON.parse(localStorage.getItem(key)) 
-    let counter = count.length
+const SignedOutLinks = ({counts}) => {
+   
+ JSON.parse(localStorage.getItem(key)) 
+  let counter = counts.cart.length 
+  console.log(counter)
     return (
       <>
+      <NavLink to='/' className=" logo">HoneySpring</NavLink>
         
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} >
-             <Menu.Item className="text-left logo" > <Link to='/'>HoneySpring  </Link></Menu.Item>
+        <NavLink to='/cart' style={{float:'right'}}>
+          <Badge count={counter}>
+                  <IconContext.Provider value={{ className: "icons" }}>
+                  <FaShoppingCart  />
+                    </IconContext.Provider>
+          </Badge>
+          </NavLink>
+         
+        {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} >
+             <Menu.Item className="text-left " > <Link to='/' className=" logo" >HoneySpring  </Link></Menu.Item>
             <Menu.Item key="1" className='text-right'>
                  
                 <Link to='/cart'>
@@ -29,14 +39,16 @@ const SignedOutLinks = ({carts}) => {
             </Link>
             </Menu.Item>
            
-        </Menu>
+        </Menu> 
+        */}
         </>
     )
 }
 const mapStateToprops = (state) => {
+  console.log(state.cart.quantity)
   return {
-   
-    carts: state.cart/*grabbing the state of the product on the product reducer in the root reducer*/
+   counts:state.cart
+  /* counts: state.cart.quantitygrabbing the state of the cart on the cart reducer in the root reducer*/
   };
 };
 

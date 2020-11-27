@@ -6,20 +6,31 @@ import PropTypes from 'prop-types';
 import { IconContext } from "react-icons";
 import { FaShoppingCart } from "react-icons/fa";
 import {displayProductById } from "../../redux/actions/displayProductAction";
+import { addToCart } from '../../redux/actions/cartAction';
 
-
-const ProductDetails = ({match,fetchProduct,product})=> {
+const ProductDetails = ({match,fetchProduct,product,add})=> {
   const  productID=match.params.id; 
    useEffect(() => {
     fetchProduct(productID);
   }, [fetchProduct,productID]); 
  // product,match, */
+
+    const addToCart = () => {
+      add(product)
+     /*  setCart([
+        ...cart,
+        product
+      ]) */
+      console.log(product)
+      //setDisabled(true)
+  }
   const  item  = product.product
     return (
+       <Card  bordered={false} >
       <Row gutter={[16, 24]}>
-       <Col className="gutter-row" sm={32} lg xl md={8} >
+       <Col className="gutter-row" sm={32} lg xl md={10} >
              <div className="site-card-border-less-wrapper">
-       <Card title={item.title} bordered={false} 
+       <Card  bordered={false} 
         cover={
       <img
         alt="example"
@@ -38,13 +49,17 @@ const ProductDetails = ({match,fetchProduct,product})=> {
         </Card>
            </div>
       </Col>
-        <Col className="gutter-row" sm={32}lg xl md={16} >
-          <p>{item.title}</p>
-            <p>{item.category}</p>
-          <p>{item.description}</p>
+        <Col className="gutter-row" sm={32}lg xl md={14} style={{position:'relative'}} >
+          <b style={{fontSize:'18px;'}}>{item.title}</b>
+            <p className='category grey-text'>{item.category}</p>
+            <p>{item.description}</p>
+             <button onClick={addToCart} className='desc-btn' > ADD TO CART
+             
+                           </button> 
        </Col>
   
       </Row>
+      </Card>
     )
 }
 ProductDetails.propTypes = {
@@ -75,8 +90,8 @@ ProductDetails.propTypes = {
 const mapDispatchToprops = (dispatch) => {
 
   return {
-    fetchProduct: (productID) =>  dispatch(displayProductById(productID))
-  ,
+    fetchProduct: (productID) =>  dispatch(displayProductById(productID)),
+     add :(product) =>  dispatch(addToCart(product)),
   };
 };
 export default connect(mapStateToprops, mapDispatchToprops)(ProductDetails)   
