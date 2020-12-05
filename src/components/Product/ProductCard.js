@@ -68,7 +68,7 @@ const ProductCard = ({ product,add }) => {
 }
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    id:PropTypes.string, 
+    id:PropTypes.number, 
     price: PropTypes.number,
     title: PropTypes.string,
     quantity: PropTypes.number,

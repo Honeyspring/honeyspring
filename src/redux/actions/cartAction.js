@@ -24,10 +24,13 @@ export const decrease = ({ id, quantity }) => {
     payload: { id, quantity }
   };
 };
-export const increase = (id) => {
+export const increase = ({ id, quantity }) => {
   return {
     type: INCREASE,
-    payload: id,
+    payload: {
+      id,
+      quantity:quantity+ 1
+    },
   };
 };
 export const clearCart = (id) => {

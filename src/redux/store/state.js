@@ -4,7 +4,7 @@
  * @description initial state of App
 */
 const key = 'fjy78999999';
-    const cartMemo = JSON.parse(localStorage.getItem(key));
+const cartMemo = JSON.parse(localStorage.getItem(key) || []);
 export const initialState = {
   products: [
     

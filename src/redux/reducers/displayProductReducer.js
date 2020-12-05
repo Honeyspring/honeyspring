@@ -1,6 +1,7 @@
 import {
   FETCH_ALL_PRODUCTS,
   FETCH_PRODUCTS_SUCCESS,
+ //FETCH_CART_SUCCESS,
   FETCH_PRODUCTBYID_SUCCESS,
   FETCH_PRODUCTS_FAIL,
 } from "../constants/constants";
@@ -24,6 +25,14 @@ const displayProductReducer = (state = initialState, action) => {
           product:{},
         error: [],
       };
+    /* case FETCH_CART_SUCCESS:
+      const key = 'fjy78999999';
+          const cartMemo = JSON.parse(localStorage.getItem(key))
+      return {
+        ...state,
+      loading:false,
+      cart: cartMemo,
+      }; */
        case FETCH_PRODUCTBYID_SUCCESS:
       return {
         ...state,

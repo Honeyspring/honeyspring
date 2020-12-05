@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   FETCH_ALL_PRODUCTS,
   FETCH_PRODUCTS_SUCCESS,
+  // FETCH_CART_SUCCESS,
  FETCH_PRODUCTBYID_SUCCESS,
   FETCH_PRODUCTS_FAIL,
 } from "../constants/constants";
@@ -14,6 +15,12 @@ export const getProducts = () => {
     
   };
 };
+/* export const getCart = (cart) => {
+  return {
+    type: FETCH_CART_SUCCESS,
+    payload: cart,
+  };
+} */
 export const getProductsSucess = (products) => {
   return {
     type: FETCH_PRODUCTS_SUCCESS,

@@ -7,11 +7,16 @@ import { IconContext } from "react-icons";
 
 
 const key = 'fjy78999999'
-  
+ 
 const SignedOutLinks = ({counts}) => {
    
- JSON.parse(localStorage.getItem(key)) 
-  let counter = counts.cart.length 
+  //JSON.parse(localStorage.getItem(key)) 
+   let counter;
+  if (counts.cart && counts.cart.length) {
+    counter = counts.cart.length
+  } else {
+     counter =0
+  } 
   console.log(counter)
     return (
       <>

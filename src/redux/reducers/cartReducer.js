@@ -18,24 +18,19 @@ const cartReducer = (state = initialState, action) => {
 
       case ADD_TO_CART:
           const cartList = [...cart, action.payload];
-          localStorage.setItem(key, JSON.stringify(cartList))
-          const cartMemo = JSON.parse(localStorage.getItem(key));
+         localStorage.setItem(key, JSON.stringify(cartList))
+      
           return {
               ...state,
-              cart:cartMemo
+              cart:cartList
           };
-      case INCREASE:
-
-          let tempCart = state.cart.map(cartItem => {
-              if (cartItem.id === action.payload) {
-                  cartItem = { ...cart, quantity: cartItem.quantity+ 1 };
-              }
-              return cartItem;
-          });
-   
+     case INCREASE:
+      const cartItem = [ ...cart,  action.payload ]
+       
+    localStorage.setItem(key, JSON.stringify(cartItem)); 
           return {
               ...state,
-              cart: tempCart
+              cart:  cartItem,
           };
       case DECREASE:
            let decCart = state.cart.map(cartItem => {

@@ -13,7 +13,7 @@ const ProductSummary=({product})=> {
 }
 ProductSummary.propTypes = {
   product: PropTypes.shape({
-    id:PropTypes.string,
+    id:PropTypes.number,
      price:PropTypes.number,
     name: PropTypes.string,
       quantity:PropTypes.number,

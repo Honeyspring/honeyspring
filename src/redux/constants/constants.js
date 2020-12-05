@@ -9,4 +9,5 @@ export const REMOVE = "REMOVE";
 export const GET_TOTALS = "GET_TOTALS";
 export const TOGGLE_AMOUNT = "TOGGLE_AMOUNT";
 export const CLEAR_CART = "CLEAR_CART";
- export const ADD_TO_CART="ADD_TO_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+//export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
